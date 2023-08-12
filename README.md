@@ -1,7 +1,7 @@
 # Fetching-Users
 A web page that retrieves user data from an external API and displays information about users with the ability to search and sort data by name.
 
-![image](https://github.com/risyaalex/Fetching-Users/assets/140414559/7a84877d-320d-4ff8-b192-afb807274bc9)
+![image](https://github.com/risyaalex/Fetching-Users/assets/140414559/09fec755-e306-459a-8c78-685aa1f00794)
 
 ## Demo
 
