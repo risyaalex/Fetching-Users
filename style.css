@@ -5,19 +5,18 @@ body {
 }
 
 #userDataDisplay {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
     justify-content: space-between;
+    gap: 20px;
 }
 
 .user-card {
     background-color: #ffffff;
     padding: 30px;
-    margin: 1%;
+    margin: 20px;
     border-radius: 5px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    flex: 0 0 calc(24% - 2%);
-    max-width: calc(24% - 2%);
 }
 
 .user-card h2 {
@@ -45,10 +44,9 @@ body {
 
 
 @media screen and (max-width: 1200px) {
-    .user-card {
-        flex: 0 0 calc(40% - 2%);
-        max-width: calc(40% - 2%);
-    }
+    #userDataDisplay {
+            grid-template-columns: 1fr 1fr;
+        }
 }
 
 @media screen and (max-width: 480px) {
@@ -57,7 +55,7 @@ body {
         }
     .user-card {
         max-width: 100%;
-        margin-bottom: 20px;
+        margin: 20px 0;
     }
 }
 
