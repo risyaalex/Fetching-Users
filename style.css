@@ -1,7 +1,7 @@
 body {
     font-family: Arial, sans-serif;
     margin: 40px;
-    background-color: #f4f4f4;
+    background-color: #c5e6cc;
 }
 
 #userDataDisplay {
@@ -12,7 +12,7 @@ body {
 
 .user-card {
     background-color: #ffffff;
-    padding: 20px;
+    padding: 30px;
     margin: 1%;
     border-radius: 5px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
@@ -21,10 +21,12 @@ body {
 }
 
 .user-card h2 {
-    border-bottom: 2px solid #ddd;
-    padding-bottom: 10px;
     font-size: 1.2em;
-    color: #333;
+    color: #fff;
+    text-align: center;
+    background-color: #168838;
+    padding: 15px 10px;
+    margin: 0;
 }
 
 .user-card p {
@@ -35,22 +37,27 @@ body {
 .address h3,
 .company h3 {
     font-size: 1em;
-    color: #444;
+    color: #168838;
+    border-bottom: 1px solid rgb(212, 216, 216);
+    padding-bottom: 5px;
+    margin-top: 20px;
 }
 
-@media screen and (max-width: 768px) {
+
+@media screen and (max-width: 1200px) {
     .user-card {
-        flex: 0 0 calc(48% - 2%);
-        /* makes it roughly 2 cards in a row on medium screens */
-        max-width: calc(48% - 2%);
+        flex: 0 0 calc(40% - 2%);
+        max-width: calc(40% - 2%);
     }
 }
 
 @media screen and (max-width: 480px) {
+    #userDataDisplay {
+            display: block;
+        }
     .user-card {
-        flex: 0 0 100%;
-        /* makes it 1 card per row on smaller screens */
         max-width: 100%;
+        margin-bottom: 20px;
     }
 }
 
@@ -78,4 +85,8 @@ body {
 #searchField:focus {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     transform: scale(1.02);
+}
+
+.container h1 {
+ text-align: center;
 }

@@ -39,18 +39,21 @@ function renderUsers(users) {
         
        newUserDataDisplay.innerHTML += `<div class="user-card">
                                             <h2>${users[i].name} (${users[i].username})</h2>
-                                            <p>Email: ${users[i].email}</p>
-                                            <p>Phone: ${users[i].phone}</p>
-                                            <p>Website: ${users[i].website}</p>
-                                            <h3>Address: </h3>
-                                            <p>Street: ${users[i].address.street}</p>
-                                            <p>Suite: ${users[i].address.suite}</p>
-                                            <p>City: ${users[i].address.city}</p>
-                                            <p>Zip: ${users[i].address.zipcode}</p>
+                                            <p><b>Email:</b> ${users[i].email}</p>
+                                            <p><b>Phone:</b> ${users[i].phone}</p>
+                                            <p><b>Website:</b> ${users[i].website}</p>
+                                            <div class="address"><h3>Address: </h3>
+                                            <p><b>Street:</b> ${users[i].address.street}</p>
+                                            <p><b>Suite:</b> ${users[i].address.suite}</p>
+                                            <p><b>City:</b> ${users[i].address.city}</p>
+                                            <p><b>Zip:</b> ${users[i].address.zipcode}</p>
+                                            </div>
+                                            <div class="company">
                                             <h3>Company:</h3>
-                                            <p>Name: ${users[i].company.name}</p>
-                                            <p>Catchphrase: ${users[i].company.catchPhrase}</p>
-                                            <p>BS: ${users[i].company.bs}</p>
+                                            <p><b>Name:</b> ${users[i].company.name}</p>
+                                            <p><b>Catchphrase:</b> ${users[i].company.catchPhrase}</p>
+                                            <p><b>BS:</b> ${users[i].company.bs}</p>
+                                            </div>
                                          </div>`;
     }
 }
@@ -79,18 +82,18 @@ function filterUsers() {
 
                 newUserDataDisplay.innerHTML += `<div class="user-card">
                                                     <h2>${userData[i].name} (${userData[i].username})</h2>
-                                                    <p>Email: ${userData[i].email}</p>
-                                                    <p>Phone: ${userData[i].phone}</p>
-                                                    <p>Website: ${userData[i].website}</p>
+                                                    <p><b>Email:</b> ${userData[i].email}</p>
+                                                    <p><b>Phone:</b> ${userData[i].phone}</p>
+                                                    <p><b>Website:</b> ${userData[i].website}</p>
                                                     <h3>Address: </h3>
-                                                    <p>Street: ${userData[i].address.street}</p>
-                                                    <p>Suite: ${userData[i].address.suite}</p>
-                                                    <p>City: ${userData[i].address.city}</p>
-                                                    <p>Zip: ${userData[i].address.zipcode}</p>
+                                                    <p><b>Street:</b> ${userData[i].address.street}</p>
+                                                    <p><b>Suite:</b> ${userData[i].address.suite}</p>
+                                                    <p><b>City:</b> ${userData[i].address.city}</p>
+                                                    <p><b>Zip:</b> ${userData[i].address.zipcode}</p>
                                                     <h3>Company:</h3>
-                                                    <p>Name: ${userData[i].company.name}</p>
-                                                    <p>Catchphrase: ${userData[i].company.catchPhrase}</p>
-                                                    <p>BS: ${userData[i].company.bs}</p>
+                                                    <p><b>Name:</b> ${userData[i].company.name}</p>
+                                                    <p><b>Catchphrase:</b> ${userData[i].company.catchPhrase}</p>
+                                                    <p><b>BS:</b> ${userData[i].company.bs}</p>
                                                 </div>`;
             } 
 
