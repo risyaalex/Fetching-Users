@@ -85,7 +85,7 @@ function filterUsers() {
 
                 console.log(userData[i].name)
 
-                sortMessage.innerHTML = `<p class="message">Total found: "${usersFoundCount}"</p>`;
+                sortMessage.innerHTML = `<p class="message">Total found: ${usersFoundCount}</p>`;
 
                 newUserDataDisplay.innerHTML += `<div class="user-card">
                                                     <h2>${userData[i].name} (${userData[i].username})</h2>
