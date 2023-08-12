@@ -3,6 +3,8 @@ let newUserDataDisplay = document.getElementById("userDataDisplay")
 
 let isLoading = true;
 
+// Function to load user data from JSON link
+
 function loadUserData() {
    return fetch("https://jsonplaceholder.typicode.com/users")
     .then(response => response.json())
@@ -16,6 +18,8 @@ function loadUserData() {
         throw error;
     });
 }
+
+// Function to render user data on the page
 
 function renderUsers(users) {
 
@@ -50,6 +54,8 @@ function renderUsers(users) {
                                          </div>`;
     }
 }
+
+// Function to filter and display users based on search input
 
 function filterUsers() {
 
@@ -86,12 +92,10 @@ function filterUsers() {
                                                     <p>Catchphrase: ${userData[i].company.catchPhrase}</p>
                                                     <p>BS: ${userData[i].company.bs}</p>
                                                 </div>`;
-            }
-
-           
+            } 
 
         }
-        
+
         if (!usersFound) {
                 newUserDataDisplay.innerHTML = `No users found or no data available.`
         } 
