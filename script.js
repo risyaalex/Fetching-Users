@@ -1,6 +1,6 @@
 let inputSearchField = document.getElementById("searchField");
 let newUserDataDisplay = document.getElementById("userDataDisplay")
-let sortMessage= document.getElementById("message")
+let sortMessage = document.getElementById("message")
 
 let isLoading = true;
 
@@ -27,11 +27,13 @@ function renderUsers(users) {
     userData = users;
 
     if (isLoading) {
-        newUserDataDisplay.innerText = "Loading data...";
+        sortMessage.innerHTML = `<p class="message">Loading data...</p>`;
+        newUserDataDisplay.innerText = "";
         console.log("Loading");
         return;
     } else if (!users) {
-        newUserDataDisplay.innerText = "No users found or no data available.";
+        sortMessage.innerHTML = `<p class="message">No users found or no data available...</p>`;
+        newUserDataDisplay.innerText = "";
         console.log("No users found");
         return;
     }
@@ -64,7 +66,7 @@ function renderUsers(users) {
 function filterUsers() {
 
     inputSearchFieldValueToLowerCase = inputSearchField.value.toLowerCase();
-    console.log(inputSearchFieldValueToLowerCase);
+    // console.log(inputSearchFieldValueToLowerCase);
 
     if (inputSearchFieldValueToLowerCase) {
 
@@ -83,7 +85,7 @@ function filterUsers() {
 
                 usersFoundCount++;
 
-                console.log(userData[i].name)
+                // console.log(userData[i].name)
 
                 sortMessage.innerHTML = `<p class="message">Total found: ${usersFoundCount}</p>`;
 
@@ -107,8 +109,9 @@ function filterUsers() {
         }
 
         if (!usersFound) {
-                sortMessage.innerHTML = ""
-                newUserDataDisplay.innerHTML = `No users found or no data available.`
+            sortMessage.innerHTML = `<p class="message">No users found or no data available!</p>`
+            newUserDataDisplay.innerHTML = "";
+            console.log(sortMessage.value)
         } 
     } else {
         sortMessage.innerHTML = ""
