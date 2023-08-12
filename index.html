@@ -7,17 +7,19 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body onload="loadUserData()">
-    <div class="search-container">
-      <input
-        type="text"
-        id="searchField"
-        placeholder="Search by name..."
-        oninput="filterUsers()"
-      />
+    <div class="container">
+      <h1>Users Information</h1>
+      <div class="search-container">
+        <input
+          type="text"
+          id="searchField"
+          placeholder="Search by name..."
+          oninput="filterUsers()"
+        />
+      </div>
+
+      <div id="userDataDisplay"></div>
     </div>
-
-    <div id="userDataDisplay"></div>
-
     <script src="script.js"></script>
   </body>
 </html>
