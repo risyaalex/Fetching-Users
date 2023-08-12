@@ -38,9 +38,15 @@ function renderUsers(users) {
         return;
     }
 
+    let usersTotalCount = 0; 
+
     for (let i = 0; i < users.length; i++) {
+
+        usersTotalCount++;
+
+        sortMessage.innerHTML = `<p class="message">Total found: ${usersTotalCount}</p>`;
         
-       newUserDataDisplay.innerHTML += `<div class="user-card">
+        newUserDataDisplay.innerHTML += `<div class="user-card">
                                             <h2>${users[i].name} (${users[i].username})</h2>
                                             <p><b>Email:</b> ${users[i].email}</p>
                                             <p><b>Phone:</b> ${users[i].phone}</p>
@@ -124,6 +130,7 @@ function filterUsers() {
 // sort by name
 
 function sortByNameDown(users) {
+    inputSearchField.value = ""
     users = userData;
     let sortedUsers = users.slice().sort((a, b) => a.name.localeCompare(b.name));
     newUserDataDisplay.innerHTML = ""
@@ -132,6 +139,7 @@ function sortByNameDown(users) {
 }
 
 function sortByNameUp(users) {
+    inputSearchField.value = ""
     users = userData;
     let sortedUsers = users.slice().sort((a, b) => b.name.localeCompare(a.name));
     newUserDataDisplay.innerHTML = ""
