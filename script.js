@@ -1,5 +1,6 @@
 let inputSearchField = document.getElementById("searchField");
 let newUserDataDisplay = document.getElementById("userDataDisplay")
+let sortMessage= document.getElementById("message")
 
 let isLoading = true;
 
@@ -70,6 +71,8 @@ function filterUsers() {
         newUserDataDisplay.innerHTML = "";
         let usersFound = false; 
 
+        let usersFoundCount = 0; 
+
         for (let i = 0; i < userData.length; i++) {
 
             let userDataNameToLowerCase = userData[i].name.toLowerCase();
@@ -78,7 +81,11 @@ function filterUsers() {
 
                 usersFound = true;
 
+                usersFoundCount++;
+
                 console.log(userData[i].name)
+
+                sortMessage.innerHTML = `<p class="message">Total found: "${usersFoundCount}"</p>`;
 
                 newUserDataDisplay.innerHTML += `<div class="user-card">
                                                     <h2>${userData[i].name} (${userData[i].username})</h2>
@@ -100,10 +107,31 @@ function filterUsers() {
         }
 
         if (!usersFound) {
+                sortMessage.innerHTML = ""
                 newUserDataDisplay.innerHTML = `No users found or no data available.`
         } 
     } else {
+        sortMessage.innerHTML = ""
         newUserDataDisplay.innerHTML = "";
         renderUsers(userData); 
     }
+}
+
+
+// sort by name
+
+function sortByNameDown(users) {
+    users = userData;
+    let sortedUsers = users.slice().sort((a, b) => a.name.localeCompare(b.name));
+    newUserDataDisplay.innerHTML = ""
+    sortMessage.innerHTML = `<p class="message">Sort by Name (A to Z)</p>`; 
+    renderUsers(sortedUsers);
+}
+
+function sortByNameUp(users) {
+    users = userData;
+    let sortedUsers = users.slice().sort((a, b) => b.name.localeCompare(a.name));
+    newUserDataDisplay.innerHTML = ""
+    sortMessage.innerHTML = `<p class="message">Sort by Name (Z to A)</p>`;
+    renderUsers(sortedUsers);
 }

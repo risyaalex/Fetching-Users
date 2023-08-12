@@ -76,6 +76,7 @@ body {
     max-width: 400px;
     font-size: 1em;
     transition: box-shadow 0.3s ease, transform 0.3s ease;
+    flex-grow: 1;
 }
 
 #searchField::placeholder {
@@ -89,4 +90,36 @@ body {
 
 .container h1 {
  text-align: center;
+}
+
+.sortbuttons {
+    text-align: center;
+}
+
+.sortbuttons button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    margin: 5px 15px;
+    background-color: #ffffff;
+    border: 1px solid #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    color: #333;
+}
+
+.sortbuttons button:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.9  );
+}
+
+.sortbuttons button:active {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.message {
+    width: 100%;
+    text-align: center;
+    margin: 20px 0px 10px 0px;
+    padding: 10px;
+    background-color: #ffffff84;
 }
