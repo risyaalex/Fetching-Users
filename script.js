@@ -1,129 +1,90 @@
 let inputSearchField = document.getElementById("searchField");
 let newUserDataDisplay = document.getElementById("userDataDisplay")
 let sortMessage = document.getElementById("message")
+let userData = [];
 
-let isLoading = true;
+let isLoading = false;
 
 // Function to load user data from JSON link
 
-function loadUserData() {
-   return fetch("https://jsonplaceholder.typicode.com/users")
-    .then(response => response.json())
-    .then(userData => {
-        isLoading = false; 
-        renderUsers(userData); 
-        return userData;
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        throw error;
-    });
+async function loadUserData() {
+  const apiEndpoint = "https://jsonplaceholder.typicode.com/users";
+  try {
+    const response = await fetch(apiEndpoint);
+
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    isLoading = true;
+    userData = await response.json();
+      
+    console.log(userData);
+    console.log("Loading data...");
+      
+    renderUsers(userData);
+    console.log("FETCHING DATA...");
+  } catch (error) {
+    console.error(
+      "There was a problem with the fetch operation:",
+      error.message
+    );
+  } finally {
+    isLoading = false;
+    renderUsers(userData);
+    console.log("END OF FETCHING DATA...");
+  }
 }
+
 
 // Function to render user data on the page
 
 function renderUsers(users) {
 
-    userData = users;
+    console.log("Loading data(renderUsers):", isLoading);
 
-    if (isLoading) {
-        sortMessage.innerHTML = `<p class="message">Loading data...</p>`;
-        newUserDataDisplay.innerText = "";
-        console.log("Loading");
-        return;
-    } else if (!users) {
-        sortMessage.innerHTML = `<p class="message">No users found or no data available...</p>`;
-        newUserDataDisplay.innerText = "";
-        console.log("No users found");
-        return;
-    }
+    newUserDataDisplay.innerHTML = "";
 
-    let usersTotalCount = 0; 
+    console.log(`Users= ${users}`)
+   
+    users.map((user) => {
 
-    for (let i = 0; i < users.length; i++) {
-
-        usersTotalCount++;
-
-        sortMessage.innerHTML = `<p class="message">Total found: ${usersTotalCount}</p>`;
-        
         newUserDataDisplay.innerHTML += `<div class="user-card">
-                                            <h2>${users[i].name} (${users[i].username})</h2>
-                                            <p><b>Email:</b> ${users[i].email}</p>
-                                            <p><b>Phone:</b> ${users[i].phone}</p>
-                                            <p><b>Website:</b> ${users[i].website}</p>
-                                            <div class="address"><h3>Address: </h3>
-                                            <p><b>Street:</b> ${users[i].address.street}</p>
-                                            <p><b>Suite:</b> ${users[i].address.suite}</p>
-                                            <p><b>City:</b> ${users[i].address.city}</p>
-                                            <p><b>Zip:</b> ${users[i].address.zipcode}</p>
-                                            </div>
-                                            <div class="company">
-                                            <h3>Company:</h3>
-                                            <p><b>Name:</b> ${users[i].company.name}</p>
-                                            <p><b>Catchphrase:</b> ${users[i].company.catchPhrase}</p>
-                                            <p><b>BS:</b> ${users[i].company.bs}</p>
-                                            </div>
-                                         </div>`;
-    }
+                                        <h2>${user.name} (${user.username})</h2>
+                                        <p><b>Email:</b> ${user.email}</p>
+                                        <p><b>Phone:</b> ${user.phone}</p>
+                                        <p><b>Website:</b> ${user.website}</p>
+                                        <div class="address"><h3>Address: </h3>
+                                        <p><b>Street:</b> ${user.address.street}</p>
+                                        <p><b>Suite:</b> ${user.address.suite}</p>
+                                        <p><b>City:</b> ${user.address.city}</p>
+                                        <p><b>Zip:</b> ${user.address.zipcode}</p>
+                                        </div>
+                                        <div class="company">
+                                        <h3>Company:</h3>
+                                        <p><b>Name:</b> ${user.company.name}</p>
+                                        <p><b>Catchphrase:</b> ${user.company.catchPhrase}</p>
+                                        <p><b>BS:</b> ${user.company.bs}</p>
+                                        </div>
+                                     </div>`;
+    });
+
+    sortMessage.innerHTML = isLoading ? `<p class="message">Loading Data...</p>` : users.length === 0 ? `<p class="message">No users found or no data available...</p>` : `<p class="message">Total found: ${users.length}</p>`
 }
 
 // Function to filter and display users based on search input
 
 function filterUsers() {
+  
+    const inputSearchFieldValueToLowerCase = document.getElementById("searchField").value.toLowerCase();
 
-    inputSearchFieldValueToLowerCase = inputSearchField.value.toLowerCase();
-    // console.log(inputSearchFieldValueToLowerCase);
+    console.log(inputSearchFieldValueToLowerCase);
 
-    if (inputSearchFieldValueToLowerCase) {
+    const filteredUsers = userData.filter(user => user.name.toLowerCase().includes(inputSearchFieldValueToLowerCase));
 
-        newUserDataDisplay.innerHTML = "";
-        let usersFound = false; 
+    console.log("Search users Name:", filteredUsers);
 
-        let usersFoundCount = 0; 
+    renderUsers(filteredUsers);
 
-        for (let i = 0; i < userData.length; i++) {
-
-            let userDataNameToLowerCase = userData[i].name.toLowerCase();
-
-            if ((userDataNameToLowerCase).includes(inputSearchFieldValueToLowerCase)) {
-
-                usersFound = true;
-
-                usersFoundCount++;
-
-                // console.log(userData[i].name)
-
-                sortMessage.innerHTML = `<p class="message">Total found: ${usersFoundCount}</p>`;
-
-                newUserDataDisplay.innerHTML += `<div class="user-card">
-                                                    <h2>${userData[i].name} (${userData[i].username})</h2>
-                                                    <p><b>Email:</b> ${userData[i].email}</p>
-                                                    <p><b>Phone:</b> ${userData[i].phone}</p>
-                                                    <p><b>Website:</b> ${userData[i].website}</p>
-                                                    <h3>Address: </h3>
-                                                    <p><b>Street:</b> ${userData[i].address.street}</p>
-                                                    <p><b>Suite:</b> ${userData[i].address.suite}</p>
-                                                    <p><b>City:</b> ${userData[i].address.city}</p>
-                                                    <p><b>Zip:</b> ${userData[i].address.zipcode}</p>
-                                                    <h3>Company:</h3>
-                                                    <p><b>Name:</b> ${userData[i].company.name}</p>
-                                                    <p><b>Catchphrase:</b> ${userData[i].company.catchPhrase}</p>
-                                                    <p><b>BS:</b> ${userData[i].company.bs}</p>
-                                                </div>`;
-            } 
-
-        }
-
-        if (!usersFound) {
-            sortMessage.innerHTML = `<p class="message">No users found or no data available!</p>`
-            newUserDataDisplay.innerHTML = "";
-            console.log(sortMessage.value)
-        } 
-    } else {
-        sortMessage.innerHTML = ""
-        newUserDataDisplay.innerHTML = "";
-        renderUsers(userData); 
-    }
 }
 
 
